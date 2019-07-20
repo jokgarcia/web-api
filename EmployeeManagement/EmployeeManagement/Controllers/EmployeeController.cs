@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using DataAccessLayer.Models;
+using DataAccessLayer.Repository;
 
 namespace EmployeeManagement.Controllers
 {
