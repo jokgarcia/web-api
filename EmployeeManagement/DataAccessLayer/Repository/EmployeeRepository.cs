@@ -5,11 +5,10 @@ using System.Text;
 
 namespace DataAccessLayer.Repository
 {
-    class EmployeeRepository
+    public class EmployeeRepository
     {
         public bool AddEmployee()
         {
-
             return true;
         }
         public bool AddEmployee(Employee employee)
@@ -21,7 +20,10 @@ namespace DataAccessLayer.Repository
             var employees = new List<Employee>();
             var employee = new Employee()
             {
-
+                Id = 1,
+                Email = "asdasdas@gmail.com",
+                FirstName = "John",
+                LastName = "Doe"
             };
 
 
