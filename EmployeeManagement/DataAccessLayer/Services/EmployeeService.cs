@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataAccessLayer.Services
 {
-    class EmployeeService
+    public class EmployeeService
     {
     }
 }
