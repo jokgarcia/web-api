@@ -3,4 +3,8 @@
 ################################################################################
 
 /EmployeeManagement/.vs/EmployeeManagement/v16
+<<<<<<< HEAD
 /EmployeeManagement/.vs/EmployeeManagement/v15
+=======
+/EmployeeManagement/.vs/EmployeeManagement/v15/Server/sqlite3
+>>>>>>> c0e77ef116072e4cb62c3fd447cc3d22f46b79c5
