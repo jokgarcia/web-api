@@ -333,6 +333,10 @@
       <Project>{5c24c887-0032-492f-b7a0-cf4cbfdae86e}</Project>
       <Name>DataAccessLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EmployeeManagement.Core\EmployeeManagement.Core.csproj">
+      <Project>{0361b9a0-9de7-4b5d-b246-ecaffb712ad6}</Project>
+      <Name>EmployeeManagement.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
