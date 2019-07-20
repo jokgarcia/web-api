@@ -10,43 +10,43 @@ namespace EmployeeManagement.Controllers
 
     public class EmployeeController : ApiController
     {
-        private IService service = new Service();
+        private IEmployeeRepository employeeRepository = new EmployeeRepository();
 
-        EmployeeController(IService _service)
+        EmployeeController(IEmployeeRepository _employeeRepository)
         {
-            this.service = _service;
+            this.employeeRepository = _employeeRepository;
         }
 
         // GET api/<controller>
         public IEnumerable<Employee> Get()
         {
-            IEnumerable<Employee> employees = this.service.GetEmployees();
+            IEnumerable<Employee> employees = this.employeeRepository.GetEmployees();
             return employees;
         }
 
         // GET api/<controller>/5
         public Employee Get(int id)
         {
-            Employee employee = this.service.GetEmployee(id);
+            Employee employee = this.employeeRepository.GetEmployee(id);
             return employee;
         }
 
         // POST api/<controller>
         public void Post([FromBody]Employee employee)
         {
-            this.service.AddEmployee(employee);
+            this.employeeRepository.AddEmployee(employee);
         }
 
         // PUT api/<controller>/5
         public void Put(int id, [FromBody]Employee employee)
         {
-            this.service.EditEmployee(id, employee);
+            this.employeeRepository.EditEmployee(id, employee);
         }
 
         // DELETE api/<controller>/5
         public void Delete(int id)
         {
-            this.service.DeleteEmployee(id);
+            this.employeeRepository.DeleteEmployee(id);
         }
     }
 }
