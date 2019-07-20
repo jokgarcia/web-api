@@ -9,34 +9,45 @@ using System.Web.Http;
 namespace EmployeeManagement.Controllers
 {
 
-
     public class EmployeeController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        private IService service = new Service();
+
+        EmployeeController(IService _service)
         {
-            return new string[] { "value1", "value2" };
+            this.service = _service;
+        }
+
+        // GET api/<controller>
+        public IEnumerable<Employee> Get()
+        {
+            IEnumerable<Employee> employees = this.service.GetEmployees();
+            return employees;
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        public Employee Get(int id)
         {
-            return "value";
+            Employee employee = this.service.GetEmployee(id);
+            return employee;
         }
 
         // POST api/<controller>
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Employee employee)
         {
+            this.service.AddEmployee(employee);
         }
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]Employee employee)
         {
+            this.service.EditEmployee(id, employee);
         }
 
         // DELETE api/<controller>/5
         public void Delete(int id)
         {
+            this.service.DeleteEmployee(id);
         }
     }
 }
