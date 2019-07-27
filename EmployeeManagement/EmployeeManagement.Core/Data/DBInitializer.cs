@@ -15,15 +15,15 @@ namespace EmployeeManagement.Core.Data
         {
             context.Database.EnsureCreated();
 
-            var role = new ApplicationRole()
-            {
-                Id = "Admin",
-                Description = "Administrator",
-                Name = "Admin"
-            };
+            //var role = new ApplicationRole()
+            //{
+            //    Id = "Admin",
+            //    Description = "Administrator",
+            //    Name = "Admin"
+            //};
 
-            context.ApplicationRoles.Add(role);
-            context.SaveChanges();
+            //context.ApplicationRoles.Add(role);
+            //context.SaveChanges();
 
             
             var employee = new Employee()

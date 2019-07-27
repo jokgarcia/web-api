@@ -1,0 +1,14 @@
+C:\Workspace\EmployeeManagementSystem\web-api\EmployeeManagement\EmployeeManagement.Core\obj\Debug\netcoreapp2.2\EmployeeManagement.Core.csprojAssemblyReference.cache
+C:\Workspace\EmployeeManagementSystem\web-api\EmployeeManagement\EmployeeManagement.Core\obj\Debug\netcoreapp2.2\EmployeeManagement.Core.csproj.CoreCompileInputs.cache
+C:\Workspace\EmployeeManagementSystem\web-api\EmployeeManagement\EmployeeManagement.Core\obj\Debug\netcoreapp2.2\EmployeeManagement.Core.RazorAssemblyInfo.cache
+C:\Workspace\EmployeeManagementSystem\web-api\EmployeeManagement\EmployeeManagement.Core\obj\Debug\netcoreapp2.2\EmployeeManagement.Core.RazorAssemblyInfo.cs
+C:\Workspace\EmployeeManagementSystem\web-api\EmployeeManagement\EmployeeManagement.Core\obj\Debug\netcoreapp2.2\EmployeeManagement.Core.AssemblyInfoInputs.cache
+C:\Workspace\EmployeeManagementSystem\web-api\EmployeeManagement\EmployeeManagement.Core\obj\Debug\netcoreapp2.2\EmployeeManagement.Core.AssemblyInfo.cs
+C:\Workspace\EmployeeManagementSystem\web-api\EmployeeManagement\EmployeeManagement.Core\bin\Debug\netcoreapp2.2\EmployeeManagement.Core.deps.json
+C:\Workspace\EmployeeManagementSystem\web-api\EmployeeManagement\EmployeeManagement.Core\bin\Debug\netcoreapp2.2\EmployeeManagement.Core.runtimeconfig.json
+C:\Workspace\EmployeeManagementSystem\web-api\EmployeeManagement\EmployeeManagement.Core\bin\Debug\netcoreapp2.2\EmployeeManagement.Core.runtimeconfig.dev.json
+C:\Workspace\EmployeeManagementSystem\web-api\EmployeeManagement\EmployeeManagement.Core\bin\Debug\netcoreapp2.2\EmployeeManagement.Core.dll
+C:\Workspace\EmployeeManagementSystem\web-api\EmployeeManagement\EmployeeManagement.Core\bin\Debug\netcoreapp2.2\EmployeeManagement.Core.pdb
+C:\Workspace\EmployeeManagementSystem\web-api\EmployeeManagement\EmployeeManagement.Core\obj\Debug\netcoreapp2.2\EmployeeManagement.Core.RazorTargetAssemblyInfo.cache
+C:\Workspace\EmployeeManagementSystem\web-api\EmployeeManagement\EmployeeManagement.Core\obj\Debug\netcoreapp2.2\EmployeeManagement.Core.dll
+C:\Workspace\EmployeeManagementSystem\web-api\EmployeeManagement\EmployeeManagement.Core\obj\Debug\netcoreapp2.2\EmployeeManagement.Core.pdb
