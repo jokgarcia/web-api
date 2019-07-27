@@ -11,21 +11,26 @@ namespace DataAccessLayer.Services
     //Business Logic
     public class EmployeeService : IEmployeeService
     {
+
         private IEmployeeRepository _repository;
         public EmployeeService(IEmployeeRepository repository)
         {
             _repository = repository;
         }
-
-        public async Task<bool> AddEmployee(Employee employee, Department dept)
+        public bool AddEmployee(Employee employee, Department dept)
         {
             if (employee != null)
             {
                 _repository.AddEmployee(employee, dept);
                 return true;
             }
-
             return false;
+        }
+        public IList<Employee> GetEmployees()
+        {
+            return _repository.GetEmployees();
         }
     }
 }
+
+
