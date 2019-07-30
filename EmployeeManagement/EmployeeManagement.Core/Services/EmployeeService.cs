@@ -17,18 +17,27 @@ namespace DataAccessLayer.Services
         {
             _repository = repository;
         }
-        public bool AddEmployee(Employee employee, Department dept)
+        public bool AddEmployee(Employee employee)
         {
-            if (employee != null)
-            {
-                _repository.AddEmployee(employee, dept);
-                return true;
-            }
-            return false;
+            _repository.AddEmployee(employee);
+            return true;
         }
         public IList<Employee> GetEmployees()
         {
             return _repository.GetEmployees();
+        }
+
+        public Employee SearchEmployee(int id)
+        {
+            return _repository.SearchEmployee(id);
+        }
+        public bool UpdateEmployee(Employee employee)
+        {
+            return _repository.UpdateEmployee(employee);
+        }
+        public bool DeleteEmployee(Employee employee)
+        {
+            return _repository.DeleteEmployee(employee);
         }
     }
 }

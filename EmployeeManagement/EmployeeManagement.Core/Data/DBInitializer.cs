@@ -13,7 +13,7 @@ namespace EmployeeManagement.Core.Data
     {
         public static void Initialize(EmployeeContext context)
         {
-            context.Database.EnsureCreated();
+            //context.Database.EnsureCreated();
 
             //var role = new ApplicationRole()
             //{

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using DataAccessLayer.Models;
 using DataAccessLayer.Services;
 using EmployeeManagement.Core.Models;
+using EmployeeManagement.Core.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -34,23 +35,30 @@ namespace EmployeeManagement.Core.Controllers
         }
         // POST api/<controller>
         [HttpPost]
-        public async Task<bool> AddEmployee([FromBody] Employee employee, Department department)
+        public async Task<bool> AddEmployee([FromBody] EmployeeViewModel request)
         {
-            _service.AddEmployee(employee, department);
+            
+            _service.AddEmployee(request.employee);
             return true;
         }
 
-        //public async Task<bool> Post()
-        //{
-        //    var employee = new Employee();
-        //    var dept = new Department();
-        //    employee.FirstName = "LeBron";
-        //    employee.LastName = "James";
-        //    employee.Email = "@email.com";
-        //    employee.IsActive = true;
-        //    dept.Name = "Acct";
-        //    return await _service.AddEmployee(employee, dept);
-        //}
+        [HttpGet]
+        public async Task<IList<Employee>> GetEmployees()
+        {
+            return _service.GetEmployees();
+        }
 
+        [HttpPut]
+        public async Task<bool> UpdateEmployee(EmployeeViewModel employee)
+        {
+            return _service.UpdateEmployee(employee.employee);
+        }
+
+        [HttpDelete]
+        public async Task<bool> DeleteEmployee(Employee employee)
+        {
+            return _service.DeleteEmployee(employee);
+        }
+        
     }
 }

@@ -17,7 +17,7 @@ namespace DataAccessLayer.Repository
             _context = context;
         }
 
-        public bool AddEmployee(Employee employee, Department dept)
+        public bool AddEmployee(Employee employee)
         {
             _context.Employees.Add(employee);
             _context.SaveChanges();
@@ -29,22 +29,23 @@ namespace DataAccessLayer.Repository
             return employees.ToList();
         }
 
-        //public Employee SearchEmployee(int id)
-        //{
-        //    //var employee = new Employee();
-
-        //    //employee = from e in _context.Employees.Select;
-        //    //return employee;
-        //}
+        public Employee SearchEmployee(int id)
+        {
+            var employee = _context.Employees.Where(s => s.Id == id).FirstOrDefault();
+            return employee;
+        }
         public bool UpdateEmployee(Employee employee)
         {
             _context.Update(employee);
             _context.SaveChanges();
             return true;
         }
-        //public int DeleteEmployee()
-        //{
+        public bool DeleteEmployee(Employee employee)
+        {
+            _context.Employees.Remove(employee);
+            _context.SaveChanges();
 
-        //}
+            return true;
+        }
     }
 }
