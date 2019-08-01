@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using DataAccessLayer.Models;
 using DataAccessLayer.Services;
 using EmployeeManagement.Core.Models;
 using EmployeeManagement.Core.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -14,46 +16,92 @@ namespace EmployeeManagement.Core.Controllers
 {
     [Route("api/[controller]")]
      
-    public class EmployeeController : Controller 
+    public class EmployeeController : ControllerBase 
     {
         private readonly IEmployeeService _service;
-        public EmployeeController(IEmployeeService service)
+        private readonly IMapper _mapper;
+        public EmployeeController(IEmployeeService service, IMapper mapper)
         {
             _service = service;
+            _mapper = mapper;
         }
         [Route("kunin")]
         [HttpGet]
-        public async Task<IList<Employee>> Get()
+        public async Task<ActionResult<Employee[]>> GetEmployees([FromBody] EmployeeViewModel viewModel)
         {
-            return _service.GetEmployees();
+            try
+            {
+                var results = await _service.GetEmployees();
+                return _mapper.Map<Employee[]>(results);
+            }
+            catch (Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+            }
         }
         // GET api/<controller>/5
         [HttpGet("{id}")]
-        public async Task<IList<Employee>> Get(int id)
+        public async Task<ActionResult<Employee>> Get(int id)
         {
-            return _service.GetEmployees();
+            try
+            {
+                var result = await _service.GetEmployeeById(id);
+                return _mapper.Map<Employee>(result);
+            }
+            catch (Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+            }
         }
         // POST api/<controller>
         [HttpPost]
-        public async Task<bool> AddEmployee([FromBody] EmployeeViewModel request)
+        public async Task<ActionResult<Employee>> AddEmployee([FromBody] EmployeeViewModel request)
         {
-            
-            _service.AddEmployee(request.employee);
-            return true;
+
+            try
+            {
+                var newEmployee = _mapper.Map<EmployeeViewModel>(request);
+                if (await _service.AddEmployee(newEmployee.employee) != null)
+                {
+                    return Created($"Created",newEmployee);
+                }
+                
+            }
+            catch (Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+            }
+
+            return BadRequest();
         }
 
-        [HttpGet]
-        public async Task<IList<Employee>> GetEmployees()
-        {
-            return _service.GetEmployees();
-        }
-
+        /// <summary>
+        /// Update Employee.
+        /// </summary>
+        /// <param name="employee">Employee ViewModel.</param>
+        /// <returns>True or False.</returns>
         [HttpPut]
-        public async Task<bool> UpdateEmployee(EmployeeViewModel employee)
+        public async Task<ActionResult<Employee>> UpdateEmployee(int id, [FromBody] EmployeeViewModel viewModel)
         {
-            return _service.UpdateEmployee(employee.employee);
+            try
+            {
+                var previous = await _service.GetEmployeeById(id);
+                if (previous == null) return NotFound($"Could not find employee {id}");
+                _mapper.Map<Employee>(viewModel.employee);
+
+
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
+        /// <summary>
+        /// Delete Employee.
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns></returns>
         [HttpDelete]
         public async Task<bool> DeleteEmployee(Employee employee)
         {

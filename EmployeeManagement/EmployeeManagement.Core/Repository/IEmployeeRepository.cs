@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System.Threading.Tasks;
 using DataAccessLayer.Models;
 
 namespace DataAccessLayer.Repository
 {
     public interface IEmployeeRepository
     {
-        bool AddEmployee(Employee employee);
-        bool DeleteEmployee(Employee employee);
-        IList<Employee> GetEmployees();
-        Employee SearchEmployee(int id);
-        bool UpdateEmployee(Employee employee);
+        void Add<T>(T entity) where T : class;
+        void Delete<T>(T entity) where T : class;
+        Task<Employee> GetEmployeeById(int id);
+        Task<Employee[]> GetEmployees();
+        Task<bool> SaveChangesAsync();
     }
 }

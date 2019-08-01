@@ -1,6 +1,7 @@
 ﻿using DataAccessLayer.Models;
 using DataAccessLayer.Repository;
 using EmployeeManagement.Core.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,27 +18,26 @@ namespace DataAccessLayer.Services
         {
             _repository = repository;
         }
-        public bool AddEmployee(Employee employee)
+        public async Task<Employee> AddEmployee(Employee employee)
         {
-            _repository.AddEmployee(employee);
-            return true;
+            var container = new Employee();
+
+            _repository.Add(employee);
+            if (await _repository.SaveChangesAsync())
+            {
+                return employee;
+            }
+
+            return container;
         }
-        public IList<Employee> GetEmployees()
+        public async Task<Employee[]> GetEmployees()
         {
-            return _repository.GetEmployees();
+            return await _repository.GetEmployees();
         }
 
-        public Employee SearchEmployee(int id)
+        public async Task<Employee> GetEmployeeById(int id)
         {
-            return _repository.SearchEmployee(id);
-        }
-        public bool UpdateEmployee(Employee employee)
-        {
-            return _repository.UpdateEmployee(employee);
-        }
-        public bool DeleteEmployee(Employee employee)
-        {
-            return _repository.DeleteEmployee(employee);
+            return await _repository.GetEmployeeById(id);
         }
     }
 }

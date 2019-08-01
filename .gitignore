@@ -10,3 +10,6 @@
 >>>>>>> c0e77ef116072e4cb62c3fd447cc3d22f46b79c5
 /EmployeeManagement/DataAccessLayer/obj
 /EmployeeManagement/EmployeeManagement.Core/Properties
+/EmployeeManagement/.vs/EmployeeManagement/DesignTimeBuild
+/EmployeeManagement/EmployeeManagement.Core/bin/Debug/netcoreapp2.2
+/EmployeeManagement/EmployeeManagement.Core/obj
