@@ -17,6 +17,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using DataAccessLayer.Services;
 using DataAccessLayer.Repository;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace EmployeeManagement.Core
 {
@@ -45,6 +48,19 @@ namespace EmployeeManagement.Core
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();
             services.AddTransient<IEmployeeService, EmployeeService>();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => 
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = "mycompany.com",
+                    ValidAudience = "mycompany.com",
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("mycompanykeydafsfsdfsfsfs"))
+                };
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,7 +78,8 @@ namespace EmployeeManagement.Core
 
             app.UseHttpsRedirection();
             app.UseMvc();
-            DBInitializer.Initialize(dbContext);
+            app.UseAuthentication();
+            //DBInitializer.Initialize(dbContext);
         }
     }
 }

@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using DataAccessLayer.Models;
 using DataAccessLayer.Services;
-using EmployeeManagement.Core.Models;
 using EmployeeManagement.Core.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,7 +23,7 @@ namespace EmployeeManagement.Core.Controllers
             _service = service;
             _mapper = mapper;
         }
-        [Route("kunin")]
+        [Route("kunin"),Authorize(AuthenticationSchemes = "Bearer")]
         [HttpGet]
         public async Task<ActionResult<Employee[]>> GetEmployees([FromBody] EmployeeViewModel viewModel)
         {
@@ -80,33 +78,33 @@ namespace EmployeeManagement.Core.Controllers
         /// </summary>
         /// <param name="employee">Employee ViewModel.</param>
         /// <returns>True or False.</returns>
-        [HttpPut]
-        public async Task<ActionResult<Employee>> UpdateEmployee(int id, [FromBody] EmployeeViewModel viewModel)
-        {
-            try
-            {
-                var previous = await _service.GetEmployeeById(id);
-                if (previous == null) return NotFound($"Could not find employee {id}");
-                _mapper.Map<Employee>(viewModel.employee);
+        //[HttpPut]
+        //public async Task<ActionResult<Employee>> UpdateEmployee(int id, [FromBody] EmployeeViewModel viewModel)
+        //{
+        //    try
+        //    {
+        //        var previous = await _service.GetEmployeeById(id);
+        //        if (previous == null) return NotFound($"Could not find employee {id}");
+        //        _mapper.Map<Employee>(viewModel.employee);
 
 
-            }
-            catch (Exception)
-            {
+        //    }
+        //    catch (Exception)
+        //    {
 
-            }
-        }
+        //    }
+        //}
 
         /// <summary>
         /// Delete Employee.
         /// </summary>
         /// <param name="employee"></param>
         /// <returns></returns>
-        [HttpDelete]
-        public async Task<bool> DeleteEmployee(Employee employee)
-        {
-            return _service.DeleteEmployee(employee);
-        }
+        //[HttpDelete]
+        //public async Task<bool> DeleteEmployee(Employee employee)
+        //{
+        //    return _service.DeleteEmployee(employee);
+        //}
         
     }
 }
