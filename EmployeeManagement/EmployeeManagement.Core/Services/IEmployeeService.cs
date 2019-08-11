@@ -8,5 +8,6 @@ namespace DataAccessLayer.Services
         Task<Employee> AddEmployee(Employee employee);
         Task<Employee> GetEmployeeById(int id);
         Task<Employee[]> GetEmployees();
+        Task<Employee> UpdateEmployee(Employee employee);
     }
 }

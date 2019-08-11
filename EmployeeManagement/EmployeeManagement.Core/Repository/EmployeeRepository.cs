@@ -29,6 +29,14 @@ namespace DataAccessLayer.Repository
             _context.Add(entity);
         }
 
+        public bool Update<T>(T entity) where T : class
+        {
+            _logger.LogInformation($"Adding an object of type {entity.GetType()} to the context");
+            _context.Entry(entity).State = EntityState.Modified;
+            _context.SaveChanges();
+            return true;
+        }
+
         public void Delete<T>(T entity) where T : class
         {
             _logger.LogInformation($"Removing an object of type {entity.GetType()} to the context.");

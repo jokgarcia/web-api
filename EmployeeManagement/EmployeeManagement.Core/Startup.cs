@@ -20,6 +20,7 @@ using DataAccessLayer.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using AutoMapper;
 
 namespace EmployeeManagement.Core
 {
@@ -48,6 +49,8 @@ namespace EmployeeManagement.Core
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();
             services.AddTransient<IEmployeeService, EmployeeService>();
+            //Install-Package AutoMapper.Extensions.Microsoft.DependencyInjection
+            services.AddAutoMapper();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => 
             {

@@ -10,5 +10,6 @@ namespace DataAccessLayer.Repository
         Task<Employee> GetEmployeeById(int id);
         Task<Employee[]> GetEmployees();
         Task<bool> SaveChangesAsync();
+        bool Update<T>(T entity) where T : class;
     }
 }

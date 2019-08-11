@@ -30,6 +30,16 @@ namespace DataAccessLayer.Services
 
             return container;
         }
+
+        public async Task<Employee> UpdateEmployee(Employee employee)
+        {
+            if( _repository.Update(employee) == true)
+            {
+                return null;
+            }
+            return employee;
+        }
+
         public async Task<Employee[]> GetEmployees()
         {
             return await _repository.GetEmployees();

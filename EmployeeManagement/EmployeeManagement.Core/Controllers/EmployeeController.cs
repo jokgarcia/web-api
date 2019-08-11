@@ -25,7 +25,7 @@ namespace EmployeeManagement.Core.Controllers
         }
         [Route("kunin"),Authorize(AuthenticationSchemes = "Bearer")]
         [HttpGet]
-        public async Task<ActionResult<Employee[]>> GetEmployees([FromBody] EmployeeViewModel viewModel)
+        public async Task<ActionResult<Employee[]>> GetEmployees()
         {
             try
             {
@@ -73,6 +73,27 @@ namespace EmployeeManagement.Core.Controllers
             return BadRequest();
         }
 
+        [HttpPut]
+        public async Task<ActionResult<Employee>> UpdateEmployee([FromBody] EmployeeViewModel request)
+        {
+
+            try
+            {
+                var newEmployee = _mapper.Map<EmployeeViewModel>(request);
+                if (await _service.UpdateEmployee(newEmployee.employee) != null)
+                {
+                    return Created($"Created", newEmployee);
+                }
+
+            }
+            catch (Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+            }
+
+            return BadRequest();
+        }
+
         /// <summary>
         /// Update Employee.
         /// </summary>
@@ -105,6 +126,6 @@ namespace EmployeeManagement.Core.Controllers
         //{
         //    return _service.DeleteEmployee(employee);
         //}
-        
+
     }
 }
