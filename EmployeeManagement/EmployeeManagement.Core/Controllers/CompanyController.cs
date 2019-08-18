@@ -11,11 +11,12 @@ namespace EmployeeManagement.Core.Controllers
     [ApiController]
     public class CompanyController : ControllerBase
     {
-        public async Task<ActionResult> Get()
+        [HttpGet]
+        public async Task<ActionResult> GetCompany()
         {
             try
             {
-                return Ok();
+                return Ok("Company Information");
             }
             catch (Exception)
             {

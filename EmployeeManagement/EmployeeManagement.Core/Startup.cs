@@ -21,6 +21,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using AutoMapper;
+using EmployeeManagement.Core.Models;
 
 namespace EmployeeManagement.Core
 {
@@ -66,7 +67,16 @@ namespace EmployeeManagement.Core
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("mycompanykeydafsfsdfsfsfs"))
                 };
             });
-            
+
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Test API",
+                    Description = "ASP.NET Core Web API"
+                });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,6 +97,10 @@ namespace EmployeeManagement.Core
             app.UseAuthentication();
             app.UseStaticFiles();
             //DBInitializer.Initialize(dbContext);
+            app.UseSwagger();
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Test API V1");
+            });
         }
     }
 }
