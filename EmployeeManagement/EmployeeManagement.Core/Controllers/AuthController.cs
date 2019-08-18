@@ -25,7 +25,7 @@ namespace EmployeeManagement.Core.Controllers
                 var userNamePass = userNamePassCred.Split(":");
                 
                 //Check in DB
-                if(userNamePass[0] == "Admin" && userNamePass[1] == "Pass")
+                if(userNamePass[0] == "Admin@email.com" && userNamePass[1] == "Pass")
                 {
                     var claimsData = new[] { new Claim(ClaimTypes.Name, userNamePass[0]) };
                     var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("mycompanykeydafsfsdfsfsfs"));
