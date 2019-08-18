@@ -26,12 +26,12 @@ namespace EmployeeManagement.Core.Controllers
         }
         [Route("kunin"),Authorize(AuthenticationSchemes = "Bearer")]
         [HttpGet]
-        public async Task<ActionResult<Employee[]>> GetEmployees()
+        public async Task<ActionResult<Accountability[]>> GetAccountabilities()
         {
             try
             {
                 var results = await _service.GetAccountabilities();
-                return _mapper.Map<Employee[]>(results);
+                return _mapper.Map<Accountability[]>(results);
             }
             catch (Exception)
             {
@@ -40,12 +40,12 @@ namespace EmployeeManagement.Core.Controllers
         }
         // GET api/<controller>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Employee>> Get(int id)
+        public async Task<ActionResult<Accountability>> Get(int id)
         {
             try
             {
                 var result = await _service.GetAccountabilityById(id);
-                return _mapper.Map<Employee>(result);
+                return _mapper.Map<Accountability>(result);
             }
             catch (Exception)
             {
@@ -54,7 +54,7 @@ namespace EmployeeManagement.Core.Controllers
         }
         // POST api/<controller>
         [HttpPost]
-        public async Task<ActionResult<Employee>> AddEmployee([FromBody] EmployeeViewModel request)
+        public async Task<ActionResult<Accountability>> AddAccountability([FromBody] AccountabilityViewModel request)
         {
 
             try
