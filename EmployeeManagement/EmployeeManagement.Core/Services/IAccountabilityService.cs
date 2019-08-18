@@ -9,5 +9,6 @@ namespace DataAccessLayer.Services
         Task<Accountability> GetAccountabilityById(int id);
         Task<Accountability[]> GetAccountabilities();
         Task<Accountability> UpdateAccountability(Accountability accountability);
+        Task<Accountability> DeleteAccountability(Accountability accountability);
     }
 }

@@ -49,6 +49,8 @@ namespace EmployeeManagement.Core
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();
             services.AddTransient<IEmployeeService, EmployeeService>();
+            services.AddTransient<IAccountabilityService, AccountabilityService>();
+            services.AddTransient<IAccountabilityRepository, AccountabilityRepository>();
             //Install-Package AutoMapper.Extensions.Microsoft.DependencyInjection
             services.AddAutoMapper();
 

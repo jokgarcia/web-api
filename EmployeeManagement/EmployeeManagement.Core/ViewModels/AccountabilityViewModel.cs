@@ -9,6 +9,8 @@ namespace EmployeeManagement.Core.ViewModels
 {
     public class AccountabilityViewModel
     {
-        public Accountability accountability {get; set;}
+        public Accountability Accountability {get; set;}
+
+        public Employee Employee { get; set; }
     }
 }

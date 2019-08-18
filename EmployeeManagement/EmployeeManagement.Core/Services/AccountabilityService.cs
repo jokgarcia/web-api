@@ -33,11 +33,14 @@ namespace DataAccessLayer.Services
 
         public async Task<Accountability> UpdateAccountability(Accountability accountability)
         {
-            if( _repository.Update(accountability) == true)
+            var container = new Accountability();
+
+            _repository.Update(accountability);
+            if (await _repository.SaveChangesAsync() == true)
             {
-                return null;
+                return accountability;
             }
-            return accountability;
+            return container;
         }
 
         public async Task<Accountability[]> GetAccountabilities()
@@ -48,6 +51,19 @@ namespace DataAccessLayer.Services
         public async Task<Accountability> GetAccountabilityById(int id)
         {
             return await _repository.GetAccountabilityById(id);
+        }
+
+        public async Task<Accountability> DeleteAccountability(Accountability accountability)
+        {
+            var container = new Accountability();
+
+            _repository.Delete(accountability);
+            if (await _repository.SaveChangesAsync())
+            {
+                return accountability;
+            }
+
+            return container;
         }
     }
 }

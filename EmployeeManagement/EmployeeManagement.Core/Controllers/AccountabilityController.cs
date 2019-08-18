@@ -13,8 +13,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace EmployeeManagement.Core.Controllers
 {
     [Route("api/[controller]")]
-     
-    public class AccountabilityController : ControllerBase 
+    [Authorize]
+    public class AccountabilityController : ControllerBase
     {
         private readonly IAccountabilityService _service;
         private readonly IMapper _mapper;
@@ -24,7 +24,7 @@ namespace EmployeeManagement.Core.Controllers
             _service = service;
             _mapper = mapper;
         }
-        [Route("kunin"),Authorize(AuthenticationSchemes = "Bearer")]
+
         [HttpGet]
         public async Task<ActionResult<Accountability[]>> GetAccountabilities()
         {
@@ -38,6 +38,7 @@ namespace EmployeeManagement.Core.Controllers
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
             }
         }
+
         // GET api/<controller>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Accountability>> Get(int id)
@@ -52,6 +53,7 @@ namespace EmployeeManagement.Core.Controllers
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
             }
         }
+
         // POST api/<controller>
         [HttpPost]
         public async Task<ActionResult<Accountability>> AddAccountability([FromBody] AccountabilityViewModel request)
@@ -60,11 +62,11 @@ namespace EmployeeManagement.Core.Controllers
             try
             {
                 var newAccountability = _mapper.Map<AccountabilityViewModel>(request);
-                if (await _service.AddAccountability(newAccountability.accountability) != null)
+                if (await _service.AddAccountability(newAccountability.Accountability) != null)
                 {
                     return Created($"Created", newAccountability);
                 }
-                
+
             }
             catch (Exception)
             {
@@ -81,7 +83,7 @@ namespace EmployeeManagement.Core.Controllers
             try
             {
                 var newAccountability = _mapper.Map<AccountabilityViewModel>(request);
-                if (await _service.UpdateAccountability(newAccountability.accountability) != null)
+                if (await _service.UpdateAccountability(newAccountability.Accountability) != null)
                 {
                     return Created($"Created", newAccountability);
                 }
@@ -95,38 +97,24 @@ namespace EmployeeManagement.Core.Controllers
             return BadRequest();
         }
 
-        /// <summary>
-        /// Update Employee.
-        /// </summary>
-        /// <param name="employee">Employee ViewModel.</param>
-        /// <returns>True or False.</returns>
-        //[HttpPut]
-        //public async Task<ActionResult<Employee>> UpdateEmployee(int id, [FromBody] EmployeeViewModel viewModel)
-        //{
-        //    try
-        //    {
-        //        var previous = await _service.GetEmployeeById(id);
-        //        if (previous == null) return NotFound($"Could not find employee {id}");
-        //        _mapper.Map<Employee>(viewModel.employee);
+        [HttpDelete]
+        public async Task<ActionResult<Accountability>> DeleteAccountability([FromBody] AccountabilityViewModel request)
+        {
+            try
+            {
+                var newAccountability = _mapper.Map<AccountabilityViewModel>(request);
+                if (await _service.DeleteAccountability(newAccountability.Accountability) != null)
+                {
+                    return Created($"Created", newAccountability);
+                }
 
+            }
+            catch (Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+            }
 
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //    }
-        //}
-
-        /// <summary>
-        /// Delete Employee.
-        /// </summary>
-        /// <param name="employee"></param>
-        /// <returns></returns>
-        //[HttpDelete]
-        //public async Task<bool> DeleteEmployee(Employee employee)
-        //{
-        //    return _service.DeleteEmployee(employee);
-        //}
-
+            return BadRequest();
+        }
     }
 }
