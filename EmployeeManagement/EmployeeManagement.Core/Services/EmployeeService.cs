@@ -47,7 +47,11 @@ namespace DataAccessLayer.Services
 
         public async Task<Employee> GetEmployeeById(int id)
         {
-            return await _repository.GetEmployeeById(id);
+            if (id > 0)
+            {
+                return await _repository.GetEmployeeById(id);
+            }
+            return null;
         }
     }
 }
