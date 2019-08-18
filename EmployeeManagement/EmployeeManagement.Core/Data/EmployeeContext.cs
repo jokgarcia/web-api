@@ -21,5 +21,6 @@ namespace DataAccessLayer.Data
         public DbSet<Department> Departments { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<ApplicationRole> ApplicationRoles { get; set; }
+        public DbSet<Accountability> Accountabilities { get; set; }
     }
 }

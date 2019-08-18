@@ -25,7 +25,7 @@ namespace EmployeeManagement.Core.Data
             //context.ApplicationRoles.Add(role);
             //context.SaveChanges();
 
-            
+
             var employee = new Employee()
             {
                 FirstName = "Jok",
