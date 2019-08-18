@@ -15,7 +15,7 @@ namespace EmployeeManagement.Core.Controllers
         {
             try
             {
-                return Ok();
+                return Ok("Company Information");
             }
             catch (Exception)
             {
